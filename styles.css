@@ -1,0 +1,52 @@
+body {
+    background-color: #dddddd;
+}
+
+.header {
+    font-size: 56px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.main {
+    display: flex;
+    justify-content:center;
+    gap: 50px;
+    flex-direction: row-reverse;
+}
+
+.gridContainer {
+    border: solid black;
+    width: 460px;
+    height: 460px;
+    display: grid;   
+}
+
+.divItem {
+    background-color: white;
+    border: 1px ridge black;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: solid black;
+    width: 200px;
+    height: 460px;
+}
+.button {
+    margin: 30px;
+    padding: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.colorClassDown {
+    background-color: black;
+}
+
+.colorClassMove {
+    background-color: black;
+}
