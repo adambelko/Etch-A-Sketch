@@ -3,6 +3,7 @@
 function createDiv(num) {
     const gridContainer = document.querySelector(".gridContainer");
     let mouseIsDown;
+    
     for (i=0; i<(num*num); i++) {
         const div = document.createElement("div");
         div.setAttribute("class", "divItem");
