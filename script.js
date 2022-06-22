@@ -7,16 +7,14 @@ function createDiv(num) {
         const div = document.createElement("div");
         div.setAttribute("class", "divItem");
 
+        div.addEventListener("click", e => e.target.classList.add("colorClassMove"));
         div.addEventListener('mousedown', e => mouseIsDown = true);
         div.addEventListener('mouseup', e => mouseIsDown = false);
 
         div.addEventListener('mousemove', e => {
             if (mouseIsDown === true) {
                 e.target.classList.add("colorClassMove");
-            } else {
-                e.target.classList("divItem");
             }
-
         });
         gridContainer.appendChild(div);
     }
