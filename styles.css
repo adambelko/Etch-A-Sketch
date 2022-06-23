@@ -36,17 +36,11 @@ body {
     width: 200px;
     height: 460px;
 }
-.button {
-    margin: 30px;
+
+.button,
+.divRange {
+    margin: 15px;
     padding: 5px;
     border-radius: 8px;
     font-size: 16px;
-}
-
-.colorClassDown {
-    background-color: black;
-}
-
-.colorClassMove {
-    background-color: black;
 }
