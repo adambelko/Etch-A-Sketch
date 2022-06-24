@@ -44,3 +44,10 @@ body {
     border-radius: 8px;
     font-size: 16px;
 }
+
+.currentValue {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 1px;
+}
+
