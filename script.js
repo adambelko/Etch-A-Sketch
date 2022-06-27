@@ -1,16 +1,20 @@
 let mouseIsDown;
-let eraserClick;
+let randomColorMode;
+let eraserMode;
 
 const gridContainer = document.querySelector(".gridContainer");
 const allDiv = document.querySelectorAll(".divItem");
 
-const eraseBtn = document.querySelector(".eraser");
-eraseBtn.addEventListener("click", e=> eraserClick = true);
+const randomColorModeBtn = document.querySelector(".randomColorMode");
+randomColorModeBtn.addEventListener("click", e=> randomColorMode = true);
 
-const clearBtn = document.querySelector(".clear");
+const eraseBtn = document.querySelector(".eraserMode");
+eraseBtn.addEventListener("click", e=> eraserMode = true);
+
+const clearBtn = document.querySelector(".clearMode");
 clearBtn.addEventListener("click", clearDiv);
 
-const gridLinesBtn = document.querySelector(".gridLines");
+const gridLinesBtn = document.querySelector(".gridLinesMode");
 gridLinesBtn.addEventListener("click", changeGridLines);
 
 const rangeSelector = document.querySelector(".rangeSelector");
@@ -21,7 +25,7 @@ rangeSelector.addEventListener("change", e => createDiv(rangeSelector.value)); /
 
 function createDiv(num) {
     // if slider is moved to a different value all divs gets deleted so new ones can be created
-    if (num !== 31) {
+    if (num !== 20) {
         while(gridContainer.firstChild) {
             gridContainer.firstChild.remove();
         }
@@ -33,15 +37,28 @@ function createDiv(num) {
 
         div.addEventListener("click", e => {
             div.style.backgroundColor = "black";
-            if (eraserClick === true) div.style.backgroundColor = "white";
+            if (eraserMode === true) {
+                div.style.backgroundColor = "white";
+            
+            } else if (randomColorMode === true) {
+                const randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+                div.style.backgroundColor = `${randomColor}`;
+            }
         });
         div.addEventListener("mousedown", e => mouseIsDown = true);
         div.addEventListener("mouseup", e => mouseIsDown = false);
 
         div.addEventListener("mousemove", e => {
-            // need to make a toggle function for eraser button to disable changing bg color when not needed anumore
-            if (mouseIsDown === true && eraserClick === true) div.style.backgroundColor = "white";
-            else if (mouseIsDown === true) div.style.backgroundColor = "black";
+            if (mouseIsDown === true && eraserMode === true) {
+                div.style.backgroundColor = "white";
+
+            } else if (mouseIsDown === true && randomColorMode === true) {
+                randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+                div.style.backgroundColor = `${randomColor}`;
+
+            } else if (mouseIsDown === true) {
+                div.style.backgroundColor = "black";
+            }
         });
         gridContainer.appendChild(div);
     }
@@ -51,12 +68,16 @@ function createDiv(num) {
     changeGridLines();
 }
 
+function eraseDiv() {
+
+}
+
 function clearDiv() {
     const allDiv = document.querySelectorAll(".divItem");
     for (i=0; i<allDiv.length; i++) {
         allDiv[i].style.backgroundColor = "white";
     }
-    getDefaultDiv();
+    createDiv(rangeSelector.value);
 };
 
 
@@ -74,22 +95,7 @@ function changeGridLines() {
     }
 }
 
-
-// brings back "painting" functionality to all divs after "clearing" them
-function getDefaultDiv() {
-
-    for (i=0; i<allDiv.length; i++){
-        allDiv[i].addEventListener("click", e => div[i].style.backgroundColor = "black");
-        allDiv[i].addEventListener("mousedown", e => mouseIsDown = true);
-        allDiv[i].addEventListener("mouseup", e => mouseIsDown = false);
-
-        allDiv[i].addEventListener("mousemove", e => {
-            if (mouseIsDown === true) div[i].style.backgroundColor = "black";
-        });
-    }
-}
-
-createDiv(31);
+createDiv(20);
 
 
 
