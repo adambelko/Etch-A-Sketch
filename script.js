@@ -1,9 +1,13 @@
 let mouseIsDown;
+let colorPickerMode;
 let randomColorMode;
 let eraserMode;
 
 const gridContainer = document.querySelector(".gridContainer");
 const allDiv = document.querySelectorAll(".divItem");
+
+const colorPicker = document.querySelector(".colorMode");
+colorPicker.addEventListener("change", e=> colorPickerMode = true);
 
 const randomColorModeBtn = document.querySelector(".randomColorMode");
 randomColorModeBtn.addEventListener("click", e=> randomColorMode = true);
@@ -43,6 +47,9 @@ function createDiv(num) {
             } else if (randomColorMode === true) {
                 const randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
                 div.style.backgroundColor = `${randomColor}`;
+
+            } else if (colorPickerMode === true) {
+                div.style.backgroundColor = `${colorPicker.value}`;
             }
         });
         div.addEventListener("mousedown", e => mouseIsDown = true);
@@ -53,8 +60,11 @@ function createDiv(num) {
                 div.style.backgroundColor = "white";
 
             } else if (mouseIsDown === true && randomColorMode === true) {
-                randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+                randomColor = '#'+Math.floor(Math.random()*16777215).toString(16); // fix changing colors withing same div
                 div.style.backgroundColor = `${randomColor}`;
+
+            } else if (mouseIsDown === true && colorPickerMode === true) {
+                div.style.backgroundColor = `${colorPicker.value}`;
 
             } else if (mouseIsDown === true) {
                 div.style.backgroundColor = "black";
@@ -68,10 +78,6 @@ function createDiv(num) {
     changeGridLines();
 }
 
-function eraseDiv() {
-
-}
-
 function clearDiv() {
     const allDiv = document.querySelectorAll(".divItem");
     for (i=0; i<allDiv.length; i++) {
@@ -79,7 +85,6 @@ function clearDiv() {
     }
     createDiv(rangeSelector.value);
 };
-
 
 function changeGridLines() {
     const allDiv = document.querySelectorAll(".divItem");
