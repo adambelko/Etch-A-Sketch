@@ -7,13 +7,25 @@ const gridContainer = document.querySelector(".gridContainer");
 const allDiv = document.querySelectorAll(".divItem");
 
 const colorPicker = document.querySelector(".colorMode");
-colorPicker.addEventListener("change", e=> colorPickerMode = true);
+colorPicker.addEventListener("change", e=> {
+    colorPickerMode = true;
+    randomColorMode = false;
+    eraserMode = false;
+});
 
 const randomColorModeBtn = document.querySelector(".randomColorMode");
-randomColorModeBtn.addEventListener("click", e=> randomColorMode = true);
+randomColorModeBtn.addEventListener("click", e=> {
+    randomColorMode = true;
+    eraserMode = false;
+    colorPickerMode = false;
+});
 
 const eraseBtn = document.querySelector(".eraserMode");
-eraseBtn.addEventListener("click", e=> eraserMode = true);
+eraseBtn.addEventListener("click", e=> {
+    eraserMode = true;
+    colorPickerMode = false;
+    randomColorMode = false;
+});
 
 const clearBtn = document.querySelector(".clearMode");
 clearBtn.addEventListener("click", clearDiv);
@@ -28,7 +40,7 @@ rangeSelector.addEventListener("input", e => currentValue.textContent = `Grid si
 rangeSelector.addEventListener("change", e => createDiv(rangeSelector.value)); // gets value from slider to change number of divs to create a new grid
 
 function createDiv(num) {
-    // if slider is moved to a different value all divs gets deleted so new ones can be created
+    // if slider is moved to a different value all divs gets deleted so new ones can be added
     if (num !== 20) {
         while(gridContainer.firstChild) {
             gridContainer.firstChild.remove();
@@ -43,9 +55,9 @@ function createDiv(num) {
             div.style.backgroundColor = "black";
             if (eraserMode === true) {
                 div.style.backgroundColor = "white";
-            
+
             } else if (randomColorMode === true) {
-                const randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+                const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
                 div.style.backgroundColor = `${randomColor}`;
 
             } else if (colorPickerMode === true) {
@@ -60,7 +72,7 @@ function createDiv(num) {
                 div.style.backgroundColor = "white";
 
             } else if (mouseIsDown === true && randomColorMode === true) {
-                randomColor = '#'+Math.floor(Math.random()*16777215).toString(16); // fix changing colors withing same div
+                randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16); 
                 div.style.backgroundColor = `${randomColor}`;
 
             } else if (mouseIsDown === true && colorPickerMode === true) {
