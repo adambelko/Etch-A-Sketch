@@ -1,12 +1,19 @@
 body {
-    background-color: #dddddd;
+    background-color: #7ac4ba;
 }
 
 .header {
-    font-size: 56px;
+    font-family: monospace;
+    font-size: 63px;
+    color: white;
     text-align: center;
     margin-top: 30px;
     margin-bottom: 30px;
+    border: 2px solid white;
+    width: 697px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .main {
@@ -18,8 +25,8 @@ body {
 
 .gridContainer {
     border: solid black;
-    width: 460px;
-    height: 460px;
+    width: 480px;
+    height: 480px;
     display: grid;   
 }
 
@@ -32,22 +39,27 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    border: solid black;
     width: 200px;
-    height: 460px;
+    height: 480px;
+    background-color: #E8A87C;
 }
 
 .button,
-.divRange {
+.rangeSelector {
     margin: 15px;
     padding: 5px;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .currentValue {
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
-    margin-bottom: 1px;
+    margin-top: 30px;
+}
+
+.colorMode {
+    font-size: 20px;
+    height: 38px;
 }
 
