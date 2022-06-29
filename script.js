@@ -2,39 +2,51 @@ let mouseIsDown;
 let colorPickerMode;
 let randomColorMode;
 let eraserMode;
+let gridLinesMdode;
 
 const gridContainer = document.querySelector(".gridContainer");
 const allDiv = document.querySelectorAll(".divItem");
-
 const colorPicker = document.querySelector(".colorMode");
-colorPicker.addEventListener("change", e=> {
+const randomColorModeBtn = document.querySelector(".randomColorMode");
+const eraserBtn = document.querySelector(".eraserMode");
+const clearBtn = document.querySelector(".clearMode");
+const gridLinesBtn = document.querySelector(".gridLinesMode");
+const rangeSelector = document.querySelector(".rangeSelector");
+const currentValue = document.querySelector(".currentValue");
+
+colorPicker.addEventListener("change", e => {
+    colorPicker.style.backgroundColor = "#4ec7b7";
+    randomColorModeBtn.style.backgroundColor = "aliceblue";
+    eraserBtn.style.backgroundColor = "aliceblue";
     colorPickerMode = true;
     randomColorMode = false;
     eraserMode = false;
 });
 
-const randomColorModeBtn = document.querySelector(".randomColorMode");
-randomColorModeBtn.addEventListener("click", e=> {
+randomColorModeBtn.addEventListener("click", e => {
+    randomColorModeBtn.style.backgroundColor = "#4ec7b7";
+    eraserBtn.style.backgroundColor = "aliceblue";
+    colorPicker.style.backgroundColor = "aliceblue";
     randomColorMode = true;
     eraserMode = false;
     colorPickerMode = false;
 });
 
-const eraseBtn = document.querySelector(".eraserMode");
-eraseBtn.addEventListener("click", e=> {
+eraserBtn.addEventListener("click", e => {
+    eraserBtn.style.backgroundColor = "#4ec7b7";
+    randomColorModeBtn.style.backgroundColor = "aliceblue";
+    colorPicker.style.backgroundColor = "aliceblue";
     eraserMode = true;
     colorPickerMode = false;
     randomColorMode = false;
 });
 
-const clearBtn = document.querySelector(".clearMode");
 clearBtn.addEventListener("click", clearDiv);
 
-const gridLinesBtn = document.querySelector(".gridLinesMode");
-gridLinesBtn.addEventListener("click", changeGridLines);
+gridLinesBtn.addEventListener("click", e => {
+    changeGridLines();
+});
 
-const rangeSelector = document.querySelector(".rangeSelector");
-const currentValue = document.querySelector(".currentValue");
 currentValue.textContent = `Grid size: ${rangeSelector.value} x ${rangeSelector.value}`;
 rangeSelector.addEventListener("input", e => currentValue.textContent = `Grid size: ${rangeSelector.value} x ${rangeSelector.value}` );
 rangeSelector.addEventListener("change", e => createDiv(rangeSelector.value)); // gets value from slider to change number of divs to create a new grid
@@ -101,11 +113,13 @@ function clearDiv() {
 function changeGridLines() {
     const allDiv = document.querySelectorAll(".divItem");
     if (allDiv[0].style.border == "1px ridge black") {
+        gridLinesBtn.style.backgroundColor = "#4ec7b7";
         for (i=0; i<allDiv.length; i++) {
             allDiv[i].style.border = "0px";
         }
 
     } else {
+        gridLinesBtn.style.backgroundColor = "aliceblue";
         for (i=0; i<allDiv.length; i++) {
             allDiv[i].style.border = "1px ridge black";
         }
