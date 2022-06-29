@@ -50,6 +50,13 @@ body {
     padding: 5px;
     border-radius: 8px;
     font-size: 18px;
+    transition: transform .1s;
+    background-color: aliceblue;
+}
+
+.button:hover {
+    background-color: #4ec7b7;
+    transform: scale(1.07);
 }
 
 .currentValue {
